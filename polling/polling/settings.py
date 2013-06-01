@@ -111,6 +111,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    'referenda/templates'
 )
 
 INSTALLED_APPS = (
@@ -142,6 +143,7 @@ INSTALLED_APPS = (
     'allauth.socialaccount.providers.twitter',
     #'allauth.socialaccount.providers.vimeo',
     #'allauth.socialaccount.providers.weibo'
+    'referenda',
 )
 
 # A sample logging configuration. The only tangible logging
