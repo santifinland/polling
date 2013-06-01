@@ -11,8 +11,8 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '',                      # Or path to database file if using sqlite3.
+        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'poll.db',                      # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
         'USER': '',
         'PASSWORD': '',
@@ -121,9 +121,27 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # Uncomment the next line to enable the admin:
-    # 'django.contrib.admin',
+    'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    # ... include the providers you want to enable:
+    #'allauth.socialaccount.providers.bitly',
+    #'allauth.socialaccount.providers.dropbox',
+    'allauth.socialaccount.providers.facebook',
+    #'allauth.socialaccount.providers.github',
+    'allauth.socialaccount.providers.google',
+    #'allauth.socialaccount.providers.linkedin',
+    #'allauth.socialaccount.providers.openid',
+    #'allauth.socialaccount.providers.persona',
+    #'allauth.socialaccount.providers.soundcloud',
+    #'allauth.socialaccount.providers.stackexchange',
+    #'allauth.socialaccount.providers.twitch',
+    'allauth.socialaccount.providers.twitter',
+    #'allauth.socialaccount.providers.vimeo',
+    #'allauth.socialaccount.providers.weibo'
 )
 
 # A sample logging configuration. The only tangible logging
@@ -154,3 +172,21 @@ LOGGING = {
         },
     }
 }
+
+# all_auth
+TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.core.context_processors.request",
+    "allauth.account.context_processors.account",
+    "allauth.socialaccount.context_processors.socialaccount",
+    "django.contrib.messages.context_processors.messages",
+    "django.contrib.auth.context_processors.auth"
+)
+
+AUTHENTICATION_BACKENDS = (
+    # Needed to login by username in Django admin, regardless of `allauth`
+    "django.contrib.auth.backends.ModelBackend",
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    "allauth.account.auth_backends.AuthenticationBackend"
+)
+
