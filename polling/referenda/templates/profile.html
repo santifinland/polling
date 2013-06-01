@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% load account %}
+
+{% block content %}
+
+<div class="row" style="background-color:#ccc">
+
+    <div class="twelve columns">
+
+        <h3> Profile </h3>
+
+        <p><b> Name </b></p>
+        {% user_display user %}
+
+        <p><b> Avatar </b></p>
+        <p> <img src="{{ avatar_url }}"> </p>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -5,9 +5,8 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    # Examples:
+    # Home:
     url(r'^$', 'referenda.views.home', name='home'),
-    # url(r'^polling/', include('polling.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
@@ -15,5 +14,9 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
 
-    (r'^accounts/', include('allauth.urls'))
+    # Accounts login and register
+    (r'^accounts/', include('allauth.urls')),
+
+    # Profile
+    url(r'^accounts/profile', 'referenda.views.profile', name='profile')
 )
