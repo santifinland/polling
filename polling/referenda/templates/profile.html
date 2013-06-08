@@ -1,21 +1,27 @@
 {% extends "base.html" %}
 
 {% load account %}
+{% load i18n avatar_tags %}
+{% load url from future %}
+{% load staticfiles %}
 
 {% block content %}
 
-<div class="row" style="background-color:#ccc">
+<div class="row">
+    <div class="large-4 columns" style="background-color:#ccc">
+        <h5>My Profile</h5>
+        <div class="row">
+            <div class="large-3 columns" style="background-color:#fff">
+                <a href="{% url 'avatar_change' %}">{% avatar user %}</a>
+            </div>
+            <div class="large-9 columns" style="background-color:#fff">
+                {% user_display user %} <br>
+            </div>
+        </div>
+    </div>
 
-    <div class="twelve columns">
-
-        <h3> Profile </h3>
-
-        <p><b> Name </b></p>
-        {% user_display user %}
-
-        <p><b> Avatar </b></p>
-        <p> <img src="{{ avatar_url }}"> </p>
-
+    <div class="large-8 columns" style="background-color:#ccc">
+        <h5> Edit my account </h5>
     </div>
 
 </div>

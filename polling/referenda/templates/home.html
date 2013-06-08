@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% load i18n avatar_tags %}
+
 {% load account %}
 {% load url from future %}
 
@@ -7,13 +9,18 @@
 
 <div class="row" style="background-color:#ccc">
 
-    <div class="six columns">
-        <p> Profile </p>
+    <div class="large-8 columns">
     </div>
 
-    <div class="six columns">
+    <div class="large-4 columns">
+        <div class="large-6 columns">
+            <h6>{% user_display user %} <br>
+            <a href="/profile"> View my profile </a> </h6>
+        </div>
+        <div class="large-6 columns">
+            {% avatar user 50 %}
+        </div>
     </div>
-
 
 </div>
 
