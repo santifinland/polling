@@ -1,4 +1,7 @@
 from django.conf.urls import patterns, include, url
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -18,5 +21,8 @@ urlpatterns = patterns('',
     (r'^accounts/', include('allauth.urls')),
 
     # Profile
-    url(r'^accounts/profile', 'referenda.views.profile', name='profile')
-)
+    url(r'^profile', 'referenda.views.profile', name='profile'),
+
+    # Avatar
+    (r'^avatar/', include('avatar.urls'))
+) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
