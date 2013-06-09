@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="http://worldwidebestsellers.com/stylesheets/foundation.min.css">
     <link rel="stylesheet" href="http://worldwidebestsellers.com/stylesheets/foundation/stylesheets/app.css">
     <script src="http://worldwidebestsellers.com/stylesheets/foundation/javascripts/modernizr.foundation.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }} /static/jquery-2.0.2.min.js"></script>
+    
     <style>
       input.required, error {
         border: 2px solid red;
@@ -28,7 +30,7 @@
         <div class="four columns">
                 {% if user.is_authenticated %}
                     <h6 class="subheader" style="text-align:right"><a href="{% url 'account_logout' %}">Sign Out</a></h6>
-                    <div class="row">
+                    <div class="row-fluid">
                         <div class="nine columns">
                             <h6 style="text-align:right">{% user_display user %} <br>
                             <a href="/profile" > View my profile </a> </h6>
@@ -45,12 +47,11 @@
 
     </div>
 
-
     <div class="row">
-        <div id="content">
+        <div class="twelve columns">
             {% block content %}{% endblock %}
         </div>
-    </div>
+    </div">
 
 </body>
 

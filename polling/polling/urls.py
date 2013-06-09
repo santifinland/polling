@@ -21,8 +21,8 @@ urlpatterns = patterns('',
     (r'^accounts/', include('allauth.urls')),
 
     # Profile
-    url(r'^profile', 'referenda.views.profile', name='profile'),
+    url(r'^profile/', 'referenda.views.profile', name='profile'),
 
     # Avatar
     (r'^avatar/', include('avatar.urls'))
-) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
