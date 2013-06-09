@@ -6,6 +6,7 @@
 
 <head>
     <title>{% block title %}Referenda{% endblock %}</title>
+    <link rel="stylesheet" href="{{ STATIC_URL }} /static/css/layout.css">
     <link rel="stylesheet" href="http://worldwidebestsellers.com/stylesheets/foundation.min.css">
     <link rel="stylesheet" href="http://worldwidebestsellers.com/stylesheets/foundation/stylesheets/app.css">
     <script src="http://worldwidebestsellers.com/stylesheets/foundation/javascripts/modernizr.foundation.js"></script>
@@ -19,6 +20,7 @@
 </head>
 
 <body>
+<div class="wrapper">
 
     <div class="row">
 
@@ -28,30 +30,47 @@
         </div>
 
         <div class="four columns">
-                {% if user.is_authenticated %}
-                    <h6 class="subheader" style="text-align:right"><a href="{% url 'account_logout' %}">Sign Out</a></h6>
-                    <div class="row-fluid">
-                        <div class="nine columns">
-                            <h6 style="text-align:right">{% user_display user %} <br>
-                            <a href="/profile" > View my profile </a> </h6>
-                        </div>
-                        <div class="three columns">
-                            <a href="{% url 'avatar_change' %}">{% avatar user 50 %}</a>
-                        </div>
+            {% if user.is_authenticated %}
+                <h6 class="subheader" style="text-align:right"><a href="{% url 'account_logout' %}">Sign Out</a></h6>
+                <div class="row">
+                    <div class="nine columns">
+                        <h6 style="text-align:right">{% user_display user %} <br>
+                        <a href="/profile" > View my profile </a> </h6>
                     </div>
-                {% else %}
-                    <h6 class="subheader" style="text-align:right"><a href="{% url 'account_login' %}">Sign In</a></h6>
-                    <h6 class="subheader" style="text-align:right"><a href="{% url 'account_signup' %}">Register</a></h6>
-                {% endif %}
+                    <div class="three columns">
+                        <a href="{% url 'avatar_change' %}">{% avatar user 50 %}</a>
+                    </div>
+                </div>
+            {% else %}
+                <h6 class="subheader" style="text-align:right"><a href="{% url 'account_login' %}">Sign In</a></h6>
+                <h6 class="subheader" style="text-align:right"><a href="{% url 'account_signup' %}">Register</a></h6>
+            {% endif %}
         </div>
 
     </div>
 
     <div class="row">
         <div class="twelve columns">
+            <hr>
             {% block content %}{% endblock %}
         </div>
     </div">
+
+    <div class="push">
+    </div">
+
+</div>
+</div>
+</div>
+
+<div class="footer">
+    <div class="row">
+        <div class="twelve columns">
+            <hr>
+            <p>Copyright © Refenda 2013</p>
+        </div>
+    </div> 
+</div>
 
 </body>
 
