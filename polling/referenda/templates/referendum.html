@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% load i18n avatar_tags %}
+
+{% load account %}
+{% load url from future %}
+
+{% block content %}
+
+<div class="row">
+    <div class="small-12 large-12 columns">
+        {% if referendum %}
+            <h4>{{ referendum }}</h4>
+            <div class="small-8 large-8 columns">
+                <ul class="pricing-table">
+                    <li class="title" style="text-align: left"><a href="/referendum/{{ referendum.id }}/">{{ referendum.headline }}</a></li>
+                    <li class="description" style="text-align: left">{{ referendum.short_description }}</li>
+                    <li class="bullet-item" style="text-align: justify;">{{ referendum.long_description }}</li>
+                </ul>
+            </div>
+        {% else %}
+            <p>No referendum is available.</p>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}
