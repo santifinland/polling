@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Poll(models.Model):
     headline = models.CharField(max_length=100)
@@ -15,6 +16,6 @@ class Poll(models.Model):
         return self.headline
 
 class Vote(models.Model):
-    referendum = models.ForeignKey(Poll)
+    referendum = models.ForeignKey('Poll')
     userid = models.IntegerField(default=0)
     vote = models.BooleanField()

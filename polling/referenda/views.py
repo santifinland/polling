@@ -24,20 +24,35 @@ def vote(request, poll_id):
     try:
         voteform = VoteForm(request.POST)
         if voteform.is_valid():
-            old_votes = get_object_or_404(Vote, pk=poll_id)
-            user_vote = form.cleaned_data['vote']
-            user = request.user.id
-            p.votes_negative = p.votes_negative + 1
-            p.save()
-            vote = Vote(poll_id)
-            vote.userid = user
-            vote.save()
+            print "Form valid"
+            #user_votes = Vote.objects.filter(referendum=p)
+            user_votes = Vote.objects.filter(referendum=p).filter(userid=request.user.id)
+            print "User votes"
+            print len(user_votes)
+            if len(user_votes) > 0:
+                print "ya has votado"
+            else: 
+                user = request.user.id
+                print "User"
+                print user
+                if voteform.data['vote'] == 'Yes':
+                    p.votes_positive = p.votes_positive + 1
+                else:
+                    p.votes_negative = p.votes_negative + 1
+                p.save()
+                vote = Vote()
+                print "Vote"
+                print vote.id
+                vote.referendum = p
+                vote.userid = user
+                vote.save()
+                print vote.id
         else:
             user_vote = voteform.errors
-    except:
+    except Exception as e:
+        print e
         return render(request, 'home.html', context)
     else:
-        context.update({'usersan': old_votes.userid})
         return render(request, 'home.html', context)
 
 def vote_referendum(request, poll_id):
