@@ -8,26 +8,6 @@
 {% block content %}
 
 <div class="row">
-
-    <div class="small-12 large-12 columns">
-        <form class="custom">
-            <label for="checkbox1">
-                <input type="checkbox" id="checkbox1" style="display: none;">
-                <span class="custom checkbox"></span> Label for Checkbox
-            </label>
-        </form>
-<form class="custom">
-  <label for="checkbox1">
-    <input type="checkbox" id="checkbox1" style="display: none;">
-    <span class="custom checkbox"></span> Label for Checkbox
-  </label>
-</form>
-    </div>
-
-</div>
-
-
-<div class="row">
     {% if poll_list %}
 
         {% for poll in poll_list %}
@@ -55,8 +35,11 @@
                 <div class="small-8 large-8 columns">
                     <ul class="pricing-table">
                         <li class="title" style="text-align: left"><a href="/referendum/{{ poll.id }}/">{{ poll.headline }}</a></li>
-                        <li class="description" style="text-align: left">{{ poll.short_description }}</li>
-                        <li class="bullet-item" style="text-align: justify;">{{ poll.long_description }}</li>
+                        <li class="bullet-item" style="text-align: left">{{ poll.long_description }}</li>
+                        <li class="bullet-item" style="text-align: left">
+                            <a href={{ poll.link }} target="_blank">Official link</a> | 
+                            Can vote until {{ poll.vote_date }}
+                        </li>
                     </ul>
                 </div>
 

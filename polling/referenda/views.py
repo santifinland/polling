@@ -3,8 +3,10 @@ from django.http import HttpResponse
 from django.shortcuts import render, render_to_response
 from django.shortcuts import get_object_or_404
 from django import forms
+from django.contrib.auth.models import User
+from referenda.forms import CommentForm
 
-from referenda.models import Poll, Vote
+from referenda.models import Poll, Vote, Comment
 from referenda.forms import VoteForm
 
 def home(request):
@@ -66,6 +68,41 @@ def referendum(request, poll_id):
     try:
         referendum = Poll.objects.get(pk=poll_id)
         context = {'referendum': referendum}
-    except:
+        comments = Comment.objects.filter(referendum_id = poll_id)
+        if comments != None:
+            context.update({'comments': comments})
+        comment_form = CommentForm(data=request.POST)
+        context.update({'comment_form': comment_form})
+    except Exception as e:
+        print e
         raise Http404
     return render(request, 'referendum.html', context)
+
+def comment(request, poll_id):
+    try:
+        referendum = Poll.objects.get(pk=poll_id)
+        context = {'referendum': referendum}
+        comments = Comment.objects.filter(referendum_id = poll_id)
+        if comments != None:
+            context.update({'comments': comments})
+        comment_form = CommentForm(request.POST)
+        if comment_form.is_valid():
+            print "Form valid"
+            user = request.user
+            print "User"
+            print user
+            comment = Comment()
+            comment.referendum = referendum
+            comment.user = user
+            comment.comment = comment_form.data['comment']
+            print comment.comment
+            comment.save()
+        else:
+            print "mal"
+        comment_form = CommentForm()
+        context.update({'comment_form': comment_form})
+    except Exception as e:
+        print e
+        raise Http404
+    else:
+        return render(request, 'referendum.html', context)

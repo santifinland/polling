@@ -1,2 +1,4 @@
 *.pyc
 *.db
+
+polling/polling/media

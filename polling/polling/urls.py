@@ -15,6 +15,7 @@ urlpatterns = patterns('',
 
     # Referendum
     url(r'^referendum/(?P<poll_id>\d+)/$', views.referendum, name='referendum'),
+    url(r'^referendum/(?P<poll_id>\d+)/comment/$', views.comment, name='comment'),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
