@@ -1,6 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.conf import settings
 from django.conf.urls.static import static
+from referenda import views
 
 
 # Uncomment the next two lines to enable the admin:
@@ -10,6 +11,11 @@ admin.autodiscover()
 urlpatterns = patterns('',
     # Home:
     url(r'^$', 'referenda.views.home', name='home'),
+    url(r'^vote/(?P<poll_id>\d+)/$', views.vote, name='vote'),
+
+    # Referendum
+    url(r'^referendum/(?P<poll_id>\d+)/$', views.referendum, name='referendum'),
+    url(r'^referendum/(?P<poll_id>\d+)/comment/$', views.comment, name='comment'),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
@@ -21,8 +27,8 @@ urlpatterns = patterns('',
     (r'^accounts/', include('allauth.urls')),
 
     # Profile
-    url(r'^profile', 'referenda.views.profile', name='profile'),
+    url(r'^profile/', 'referenda.views.profile', name='profile'),
 
     # Avatar
     (r'^avatar/', include('avatar.urls'))
-) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
